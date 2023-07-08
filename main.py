@@ -1,6 +1,11 @@
 import turtle
 from turtle import Turtle, Screen
+from pad import Pad
 
+STARTING_POSITIONS = [(350, 0), (-350, 0)]
+
+r_pad = Pad(STARTING_POSITIONS[0])
+l_pad = Pad(STARTING_POSITIONS[1])
 # Setup screen
 
 screen = Screen()
@@ -11,26 +16,10 @@ screen.listen()
 screen.tracer(0)
 
 
-pad = Turtle(shape="square")
-pad.color("white")
-pad.penup()
-pad.shapesize(stretch_wid=5, stretch_len=1)
-pad.speed("fastest")
-pad.setposition(x=350, y=0)
-
-# Define Pad movement
-def go_up():
-    new_y = pad.ycor() + 20
-    pad.goto(pad.xcor(), new_y)
-
-def go_down():
-    new_y = pad.ycor() - 20
-    pad.goto(pad.xcor(), new_y)
-
-
-screen.onkey(go_up, "Up")
-screen.onkey(go_down, "Down")
-
+screen.onkey(r_pad.go_up, "Up")
+screen.onkey(r_pad.go_down, "Down")
+screen.onkey(l_pad.go_up, "w")
+screen.onkey(l_pad.go_down, "s")
 
 game_on = True
 
