@@ -1,16 +1,43 @@
-# This is a sample Python script.
+import turtle
+from turtle import Turtle, Screen
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+# Setup screen
+
+screen = Screen()
+screen.setup(height=600, width=800)
+screen.bgcolor("black")
+screen.title("Pong")
+screen.listen()
+screen.tracer(0)
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+pad = Turtle(shape="square")
+pad.color("white")
+pad.penup()
+pad.shapesize(stretch_wid=5, stretch_len=1)
+pad.speed("fastest")
+pad.setposition(x=350, y=0)
+
+# Define Pad movement
+def go_up():
+    new_y = pad.ycor() + 20
+    pad.goto(pad.xcor(), new_y)
+
+def go_down():
+    new_y = pad.ycor() - 20
+    pad.goto(pad.xcor(), new_y)
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+screen.onkey(go_up, "Up")
+screen.onkey(go_down, "Down")
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+game_on = True
+
+while game_on:
+    screen.update()
+
+
+
+screen.exitonclick()
+
